@@ -25,7 +25,6 @@ class AlienInvasion:
             self.ship.update()
             self._update_screen()
 
-
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
         for event in pygame.event.get():
