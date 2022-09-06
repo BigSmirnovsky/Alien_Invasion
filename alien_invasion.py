@@ -33,7 +33,8 @@ class AlienInvasion:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     # Переместить корабль вправо.
-                    self.ship.rect.x += 1
+                    self.ship.moving_right = True
+                
 
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран"""
