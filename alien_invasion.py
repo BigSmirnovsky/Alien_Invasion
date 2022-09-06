@@ -11,6 +11,9 @@ class AlienInvasion:
 
         self.screen = pygame.display.set_mode((1280, 1024))
         pygame.display.set_caption('Alien Invasion')
+        
+        # Назначение цвета фона
+        self.bg_color = (230, 230, 230)
 
     def run_game(self):
         """Запуск основного цикла игры."""
