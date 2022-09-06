@@ -22,6 +22,7 @@ class AlienInvasion:
         """Запуск основного цикла игры."""
         while True:
             self._check_events()
+            self.ship.update()
             self._update_screen()
 
 
