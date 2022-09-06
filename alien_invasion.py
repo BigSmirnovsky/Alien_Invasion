@@ -52,7 +52,7 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
-        elif event.key == pygame.K_SPACE
+        elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
     def _check_keyup_events(self, event):
@@ -72,6 +72,8 @@ class AlienInvasion:
         # При каждом проходе цикла перерисовывается экран
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
 
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
