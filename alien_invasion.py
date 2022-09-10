@@ -19,10 +19,6 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
-
-        # self.screen = pygame.display.set_mode(
-        #     (self.settings.screen_width, self.settings.screen_height))
-        # pygame.display.set_caption('Alien Invasion')
         
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
@@ -35,7 +31,8 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self._update_bullets()       
+            self._update_bullets()
+            self.update_aliens()       
             self._update_screen()
     
     def _update_bullets(self):
@@ -47,6 +44,9 @@ class AlienInvasion:
             if bullet.rect.bottom <= 0:
                 self.bullets.remove(bullet)
 
+    def _update_aliens(self):
+        """Обновляет  позиции всех пришельцев во флоте."""
+        self.aliens.update()
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
@@ -94,10 +94,10 @@ class AlienInvasion:
         available_space_x = self.settings.screen_width - (2* alien_width)
         number_alien_x = available_space_x // (2 * alien_width)
 
-        # определяет количество рядовб помещающихся на экране.
+        # определяет количество рядов помещающихся на экране.
         ship_height = self.ship.rect.height
         available_space_y = (self.settings.screen_height - 
-                                (3 * alien_height) - ship_height)
+                                (4 * alien_height) - ship_height)
         number_rows = available_space_y // (2 * alien_height)
 
         # Создание флота вторжения.
