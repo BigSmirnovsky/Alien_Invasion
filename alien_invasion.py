@@ -6,6 +6,8 @@ from settings import Settings
 from ship import Ship
 from bullet import Bullet
 from alien import Alien
+from time import sleep
+from game_stats import GameStats
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
@@ -20,6 +22,9 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
         
+        # Создание экземпляра для хранения игровой статистики.
+        self.stats = GameStats(self)
+
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
         self.aliens = pygame.sprite.Group()
