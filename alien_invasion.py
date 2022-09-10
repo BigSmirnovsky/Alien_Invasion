@@ -115,6 +115,13 @@ class AlienInvasion:
         alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
         self.aliens.add(alien)
 
+    def _check_fleet_edges(self):
+        """Реагирует на достижение пришельцем края экрана."""
+        for alien in self.aliens.sprites():
+            if alien.check_edges():
+                self.change_fleet_direction()
+                break
+
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран"""
         # При каждом проходе цикла перерисовывается экран
