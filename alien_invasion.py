@@ -123,6 +123,15 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
+    def check_aliens_bottom(self):
+        """Проверяет, добрались ли пришельцы до нижнего края экрана."""
+        screen_rect = self.screen.get_rect()
+        for alien in self.aliens.sprites():
+            if alien.rect.bottom >= screen_rect.bottm:
+                #Происходит то же, что при столкновении с кораблём.
+                self._ship_hit()
+                break
+
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""
         if len(self.bullets) < self.settings.bullet_allowed:
