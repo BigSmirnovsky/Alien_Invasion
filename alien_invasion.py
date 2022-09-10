@@ -86,7 +86,12 @@ class AlienInvasion:
         self.ship.center_ship()
 
         # Пауза
-        sleep(0.5)   
+        sleep(0.5)
+
+    def center_ship(self):
+        """Размещает корабля в центре нижней стороны."""
+        self.rect.midbottom = self.screen_rect.midbottom
+        self.x = float(self.rect.x)   
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
