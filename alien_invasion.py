@@ -58,11 +58,14 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
 
-
     def _update_aliens(self):
         """Проверяет достиг ли флот края экрана, с последующим обновлением всех позиций"""
         self._check_fleet_edges()
         self.aliens.update()
+
+        # Проверка коллизий "пришелец - корабль".
+        if pygame.sprite.spritecollideany(self.ship, self.aliens):
+            print('Ship hit!!!')
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
