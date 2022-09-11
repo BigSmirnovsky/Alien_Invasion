@@ -35,9 +35,11 @@ class AlienInvasion:
         """Запуск основного цикла игры."""
         while True:
             self._check_events()
-            self.ship.update()
-            self._update_bullets()
-            self._update_aliens()       
+            if self.stats.game_active:
+                self.ship.update()
+                self._update_bullets()
+                self._update_aliens()
+                       
             self._update_screen()
     
     def _update_bullets(self):
@@ -75,7 +77,7 @@ class AlienInvasion:
         # Проверка, добрались ли пришельцы до нижнего края экрана.
         self._check_aliens_bottom()
 
-    def _ship_hit(self, stats):
+    def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
         if stats.ships_left > 0:
             # Уменьшение ship_left.
@@ -129,11 +131,11 @@ class AlienInvasion:
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
 
-    def check_aliens_bottom(self):
+    def _check_aliens_bottom(self):
         """Проверяет, добрались ли пришельцы до нижнего края экрана."""
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
-            if alien.rect.bottom >= screen_rect.bottm:
+            if alien.rect.bottom >= screen_rect.bottom:
                 #Происходит то же, что при столкновении с кораблём.
                 self._ship_hit()
                 break
