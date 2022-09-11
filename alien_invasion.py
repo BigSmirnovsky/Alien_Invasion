@@ -39,7 +39,7 @@ class AlienInvasion:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
-                       
+
             self._update_screen()
     
     def _update_bullets(self):
@@ -79,7 +79,7 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
-        if stats.ships_left > 0:
+        if self.stats.ships_left > 0:
             # Уменьшение ship_left.
             self.stats.ship_left -= 1
 
