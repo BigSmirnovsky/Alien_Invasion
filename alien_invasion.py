@@ -8,6 +8,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 from game_stats import GameStats
+from button import Button
 
 class AlienInvasion:
     """Класс для управления ресурсами и поведением игры."""
@@ -30,6 +31,9 @@ class AlienInvasion:
         self.aliens = pygame.sprite.Group()
 
         self._create_fleet()
+
+        # Создание кнопки Play
+        self.play_button = Button(self, 'Play')
 
     def run_game(self):
         """Запуск основного цикла игры."""
