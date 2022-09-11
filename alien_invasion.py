@@ -100,8 +100,6 @@ class AlienInvasion:
         else:
             self.stats.game_active = False
 
-
-
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
         for event in pygame.event.get():
@@ -118,7 +116,17 @@ class AlienInvasion:
     def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии кнопки Play"""
         if self.play_button.rect.collidepoint(mouse_pos):
+            # сброс игровой статистики.
+            self.stats.reset_stats()
             self.stats.game_active = True
+
+            # Очистка списков пришельцев и снарядов
+            self.aliens.empty()
+            self.bullets.empty()
+
+            # Создание нового флота и размещение корабля в центре.
+            self._create_fleet()
+            self.ship.center_ship()
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
