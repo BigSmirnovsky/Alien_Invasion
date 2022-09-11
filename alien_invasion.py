@@ -83,7 +83,7 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
-        if self.stats.ships_left > 0:
+        if self.stats.ship_left > 0:
             # Уменьшение ship_left.
             self.stats.ship_left -= 1
 
@@ -100,10 +100,7 @@ class AlienInvasion:
         else:
             self.stats.game_active = False
 
-    def center_ship(self):
-        """Размещает корабля в центре нижней стороны."""
-        self.rect.midbottom = self.screen_rect.midbottom
-        self.x = float(self.rect.x)   
+
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
@@ -116,7 +113,7 @@ class AlienInvasion:
                 self._check_keyup_events(event)
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_pos = pygame.mouse.get_pos()
-                self._chck_play_button(mouse_pos)
+                self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии кнопки Play"""
