@@ -32,6 +32,7 @@ class Scoreboard():
     def show_score(self):
         """Выводит счёт на экран."""
         self.screen.blit(self.score_image, self.score_rect)
+        self.screen.blit(self.hight_score_image, self.hight_score_rect)
 
     def prep_hight_score(self):
         """Преобразует рекорднаый счёт в графическое изображение"""
