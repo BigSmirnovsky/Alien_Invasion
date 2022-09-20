@@ -13,7 +13,7 @@ class Scoreboard():
         # Настройки шрифта для вывода счёта.
         self.text_color = (30, 30, 30)
         self.font = pygame.font.SysFont(None, 48)
-        # Подготовка исходного изображения.
+        # Подготовка изображения счетов.
         self.prep_score()
         self.prep_hight_score()
 
@@ -39,7 +39,7 @@ class Scoreboard():
         hight_score = round(self.stats.hight_score, -1)
         hight_score_str = "{:,}".format(hight_score)
         self.hight_score_image = self.font.render(hight_score_str, True,
-                self.text_color, self.ai_settings.bg_color)
+                self.text_color, self.settings.bg_color)
 
         # Рекорд выравнивается по центру верхней стороны.
         self.hight_score_rect = self.hight_score_image.get_rect()
