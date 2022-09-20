@@ -1,6 +1,5 @@
-from email.headerregistry import Group
 import pygame.font
-from pygame.sprite import Sprite
+from pygame.sprite import Group
 from ship import Ship
 
 class Scoreboard():
@@ -40,7 +39,7 @@ class Scoreboard():
         self.screen.blit(self.score_image, self.score_rect)
         self.screen.blit(self.hight_score_image, self.hight_score_rect)
         self.screen.blit(self.level_image, self.level_rect)
-        self.ships.draw(self.screen)
+        self.ship.draw(self.screen)
 
     def prep_hight_score(self):
         """Преобразует рекорднаый счёт в графическое изображение"""
@@ -73,9 +72,9 @@ class Scoreboard():
 
     def prep_ships(self):
         """Сообщает количество оставшихся кораблей."""
-        self.ships = Group()
-        for ship_number in range(self.stats.ships_left):
+        self.ship = Group()
+        for ship_number in range(self.stats.ship_left):
             ship = Ship(self.ai_game)
             ship.rect.x = 10 + ship_number * ship.rect.width
             ship.rect.y = 10
-            self.ships.add(ship)
+            self.ship.add(ship)
