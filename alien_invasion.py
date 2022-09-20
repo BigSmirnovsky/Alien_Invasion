@@ -8,6 +8,7 @@ from bullet import Bullet
 from alien import Alien
 from time import sleep
 from game_stats import GameStats
+from scoreboard import Scoreboard
 from button import Button
 
 class AlienInvasion:
@@ -24,7 +25,9 @@ class AlienInvasion:
         self.settings.screen_height = self.screen.get_rect().height
         
         # Создание экземпляра для хранения игровой статистики.
+        # и панели результатов
         self.stats = GameStats(self)
+        self.sb = Scoreboard(self)
 
         self.ship = Ship(self)
         self.bullets = pygame.sprite.Group()
