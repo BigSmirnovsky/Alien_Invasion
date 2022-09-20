@@ -19,14 +19,18 @@ class Settings():
         self.bullet_allowed = 3
 
         # Настройки пришельцев
-        #self.alien_speed = 1.0
         self.fleet_drop_speed = 10
-        # fleet_direction = 1 обозначает движение вправо; а -1 влево.
-        #self.fleet_direction = 1
-
+        
         # Темп ускорения игры
         self.speed_scale = 1.1
 
         self.initialize_dunamyc_settings()
 
-        
+    def initialize_dunamyc_settings(self):
+        """Инициализирует настройки, динамические настройки игры"""
+        self.ship_speed_factor = 1.5
+        self.bullet_speed_factor = 3.0
+        self.alien_speed_factor = 1.0
+
+        # fleet_direction = 1 обозначает движение вправо; а -1 влево.
+        self.fleet_direction = 1
