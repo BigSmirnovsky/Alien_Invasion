@@ -45,3 +45,9 @@ class Scoreboard():
         self.hight_score_rect = self.hight_score_image.get_rect()
         self.hight_score_rect.centerx = self.screen_rect.centerx
         self.hight_score_rect.top = self.score_rect.top
+
+    def check_hight_score(self):
+        """Проверяет, появился ли новый рекорд."""
+        if self.stats.score > self.stats.hight_score:
+            self.stats.hight_score = self.stats.score
+            self.prep_hight_score()
