@@ -15,7 +15,7 @@ class Scoreboard():
         # подготовка исходного изображения.
         self.prep_score()
 
-    def prep_scrore(self):
+    def prep_score(self):
         """Преобразует текущий счёт в графическое изображение."""
         score_str = str(self.stats.score)
         self.score_image = self.font.render(score_str, True, 
@@ -29,4 +29,3 @@ class Scoreboard():
     def show_score(self):
         """Выводит счёт на экран."""
         self.screen.blit(self.score_image, self.score_rect)
-        
