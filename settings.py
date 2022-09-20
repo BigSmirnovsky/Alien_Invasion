@@ -22,11 +22,11 @@ class Settings():
         self.fleet_drop_speed = 10
         
         # Темп ускорения игры
-        self.speed_scale = 1.1
+        self.speedup_scale = 1.1
 
-        self.initialize_dunamyc_settings()
+        self.initialize_dynamyc_settings()
 
-    def initialize_dunamyc_settings(self):
+    def initialize_dynamyc_settings(self):
         """Инициализирует настройки, динамические настройки игры"""
         self.ship_speed_factor = 1.5
         self.bullet_speed_factor = 3.0
@@ -34,3 +34,10 @@ class Settings():
 
         # fleet_direction = 1 обозначает движение вправо; а -1 влево.
         self.fleet_direction = 1
+
+    def increase_speed(self):
+        """Увеличивает настройки скорости."""
+        self.ship_speed_factor *= self.speedup_scale
+        self.bullet_speed_factor *= self.speedup_scale
+        self.alien_speed_factor *= self.speedup_scale
+        
