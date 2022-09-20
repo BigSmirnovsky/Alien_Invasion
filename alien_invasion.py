@@ -140,6 +140,7 @@ class AlienInvasion:
             self.stats.reset_stats()
             self.stats.game_active = True
             self.sb.prep_score()
+            self.sb.prep_level()
 
             # Очистка списков пришельцев и снарядов
             self.aliens.empty()
