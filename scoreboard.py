@@ -16,6 +16,7 @@ class Scoreboard():
         # Подготовка изображения счетов.
         self.prep_score()
         self.prep_hight_score()
+        self.prep_level()
 
     def prep_score(self):
         """Преобразует текущий счёт в графическое изображение."""
@@ -51,3 +52,14 @@ class Scoreboard():
         if self.stats.score > self.stats.hight_score:
             self.stats.hight_score = self.stats.score
             self.prep_hight_score()
+    
+    def prep_level(self):
+        """Преобразует уровень в графическое изображение."""
+        level_str = str(self.stats.level)
+        self.level_image = self.font.render(level_str, True,
+                self.text_color, self.settings.bg_color)
+
+        # Уровень выводится под текущим счётом.
+        self.level_rect = self.level_image.get_rect()
+        self.level_rect.right = self.score_rect.right
+        self.level_rect.top = self.score_rect.bottom + 10
