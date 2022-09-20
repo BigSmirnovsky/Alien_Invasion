@@ -78,6 +78,10 @@ class AlienInvasion:
             self.bullets.empty()
             self._create_fleet()
             self.settings.increase_speed()
+        
+        # Увеличение уровня
+        self.stats.level += 1
+        self.sb.prep_level()
 
     def _update_aliens(self):
         """Проверяет достиг ли флот края экрана, с последующим обновлением всех позиций"""
