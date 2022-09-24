@@ -162,25 +162,23 @@ class AlienInvasion:
         pygame.mouse.set_visible(False)
 
     def _paused_start_game(self):
-        pass
+        """Функция которая должна запускать игру после паузы с охранением статы игры"""
         
     def _first_game_mode_complexity(self, count):
         """Создание настроек скорости корабля, снаряда, и врожеских кораблей"""
         for _ in range(count):
             self.settings.increase_speed()
 
-    def _paused(self): 
+    def _paused(self):
+        """Функция паузы""" 
         self.stats.game_active = False
         self.play_button = Button(self, 'Paused')
 
     def _help_function(self):
         """Функция вывода помощи"""
-        # Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
-        # кнопками и автором и такое инфу всякую
-        # весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать
-        self.text_help = 'paused'
-        self.help_button = Help_info(self, self.text_help)
-                
+        """Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
+        кнопками и автором и такое инфу всякую
+        весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать"""                
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
