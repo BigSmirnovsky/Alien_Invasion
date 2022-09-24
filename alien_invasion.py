@@ -164,6 +164,10 @@ class AlienInvasion:
         for _ in range(count):
             self.settings.increase_speed()
         
+    def help_function(self):
+        # Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
+        # кнопками и автором и такое инфу всякую
+        pass        
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -175,6 +179,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
             sys.exit()
+        # elif event.key == pygame.K_F12:
+        #     self.help_funciton()    
         elif event.key == pygame.K_1:
             self._first_game_mode_complexity(1)
         elif event.key == pygame.K_2:
