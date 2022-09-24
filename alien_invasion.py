@@ -161,32 +161,26 @@ class AlienInvasion:
         # Указатель мыши скрывается.
         pygame.mouse.set_visible(False)
 
+    def _paused_start_game(self):
+        pass
+        
     def _first_game_mode_complexity(self, count):
-        """Создание настроек 1-го уровня скорости корабля, снаряда, и врожеских кораблей"""
+        """Создание настроек скорости корабля, снаряда, и врожеских кораблей"""
         for _ in range(count):
             self.settings.increase_speed()
-        
-    def help_function(self):
+
+    def _paused(self): 
+        self.stats.game_active = False
+        self.play_button = Button(self, 'Paused')
+
+    def _help_function(self):
+        """Функция вывода помощи"""
         # Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
         # кнопками и автором и такое инфу всякую
         # весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать
-        text_help = """
-        Кнопки, которые используются в игре:
-            Выход из игры -  'Esc'.
-            Начать новую игру - 'EnterKP'.
-            Выстрел из корабля - 'Space'.
-            Двигать корабль вправо - '->'.
-            Двигать корабль влево - '<-'.
-            1-й уровень сложности - '1'.
-            2-й уровень сложности - '2'.
-            3-й уровень сложности - '3'.
-            4-й уровень сложности - '4'.
-            * при нажатии кнопки любого уровня несколько раз игра усложняется в арифметической прогрессии.
-        Это моя первая игра. Все претензии можете писать мне на почту. Хотя нет, не можете, я её просто не укажу.
-        Спасибо что играете. С уважением BS \m/.    
-        """
-        self.play_button = Help_info(self, text_help)
-        pass        
+        self.text_help = 'paused'
+        self.help_button = Help_info(self, self.text_help)
+                
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -198,8 +192,10 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
             sys.exit()
-        # elif event.key == pygame.K_F12:
-        #     self.help_funciton()    
+        #elif event.key == pygame.K_F12:
+            #self._help_function()
+        elif event.key == pygame.K_p:
+            self._paused()
         elif event.key == pygame.K_1:
             self._first_game_mode_complexity(1)
         elif event.key == pygame.K_2:
