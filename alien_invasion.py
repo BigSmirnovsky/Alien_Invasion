@@ -189,7 +189,7 @@ class AlienInvasion:
             self._first_game_mode_complexity(12)
         elif event.key == pygame.K_4:
             self._first_game_mode_complexity(16)         
-        elif event.key == pygame.K_p:
+        elif event.key == pygame.K_KP_ENTER:
             # Перезапускает игру
             self._start_game()
         elif event.key == pygame.K_SPACE:
