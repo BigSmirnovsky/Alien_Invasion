@@ -130,30 +130,34 @@ class AlienInvasion:
                 self._check_play_button(mouse_pos)
 
     def _check_play_button(self, mouse_pos):
-        """Запускает новую игру при нажатии кнопки Play"""
+        """Запускает новую игру при нажатии кнопки Play мышью"""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active:
-            # Сброс игровых настроек
-            self.settings.initialize_dynamyc_settings()    
+           self._start_game()
 
-            # сброс игровой статистики.
-            self.stats.reset_stats()
-            self.stats.game_active = True
-            self.sb.prep_score()
-            self.sb.prep_level()
-            self.sb.prep_ships()
+    def _start_game(self):
+        """Перезапускает параметры игры, создаёт новый флот"""
+        # Сброс игровых настроек
+        self.settings.initialize_dynamyc_settings()    
 
-            # Очистка списков пришельцев и снарядов
-            self.aliens.empty()
-            self.bullets.empty()
+        # сброс игровой статистики.
+        self.stats.reset_stats()
+        self.stats.game_active = True
+        self.sb.prep_score()
+        self.sb.prep_level()
+        self.sb.prep_ships()
 
-            # Создание нового флота и размещение корабля в центре.
-            self._create_fleet()
-            self.ship.center_ship()
+        # Очистка списков пришельцев и снарядов
+        self.aliens.empty()
+        self.bullets.empty()
 
-            # Указатель мыши скрывается.
-            pygame.mouse.set_visible(False)
+        # Создание нового флота и размещение корабля в центре.
+        self._create_fleet()
+        self.ship.center_ship()
+
+        # Указатель мыши скрывается.
+        pygame.mouse.set_visible(False)
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -165,6 +169,9 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_q:
             sys.exit()
+        elif event.key == pygame.K_p:
+            # Перезапускает игру
+            self._start_game()
         elif event.key == pygame.K_SPACE:
             self._fire_bullet()
 
