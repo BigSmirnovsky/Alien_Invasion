@@ -159,6 +159,12 @@ class AlienInvasion:
         # Указатель мыши скрывается.
         pygame.mouse.set_visible(False)
 
+    def _first_game_mode_complexity(self, count):
+        """Создание настроек 1-го уровня скорости корабля, снаряда, и врожеских кораблей"""
+        for _ in range(count):
+            self.settings.increase_speed()
+        
+
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
         if event.key == pygame.K_RIGHT:
@@ -167,8 +173,16 @@ class AlienInvasion:
             # Переместить корабль влево.
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = True
-        elif event.key == pygame.K_q:
+        elif event.key == pygame.K_ESCAPE:
             sys.exit()
+        elif event.key == pygame.K_1:
+            self._first_game_mode_complexity(1)
+        elif event.key == pygame.K_2:
+            self._first_game_mode_complexity(6)
+        elif event.key == pygame.K_3:
+            self._first_game_mode_complexity(12)
+        elif event.key == pygame.K_4:
+            self._first_game_mode_complexity(16)         
         elif event.key == pygame.K_p:
             # Перезапускает игру
             self._start_game()
