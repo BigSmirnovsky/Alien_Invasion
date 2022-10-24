@@ -1,6 +1,7 @@
 import numbers
 import sys
 from zoneinfo import available_timezones
+import json
 import pygame
 from settings import Settings
 from ship import Ship
@@ -177,11 +178,10 @@ class AlienInvasion:
 
     def _help_function(self):
         """Функция вывода помощи"""
-        """Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
-        кнопками и автором и такое инфу всякую
-        весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать"""
+        with open('help.json', 'r', encoding='utf-8') as f: 
+            text_help = f.read()        
         self.stats.game_active = False
-        self.play_button = Help_info(self, 'Help')                
+        self.play_button = Help_info(self, text_help)                
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
