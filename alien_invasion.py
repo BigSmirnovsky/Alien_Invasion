@@ -179,7 +179,9 @@ class AlienInvasion:
         """Функция вывода помощи"""
         """Тут надо сделать так, чтобы игра ставилась на паузу и выводила картинку 
         кнопками и автором и такое инфу всякую
-        весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать"""                
+        весь текс потом надо запихнуть в отдельный файл текстовый и просто его читать"""
+        self.stats.game_active = False
+        self.play_button = Help_info(self, 'Help')                
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -191,8 +193,8 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
             sys.exit()
-        #elif event.key == pygame.K_F12:
-            #self._help_function()
+        elif event.key == pygame.K_F12:
+            self._help_function()
         elif event.key == pygame.K_p:
             self._paused()
         elif event.key == pygame.K_1:
