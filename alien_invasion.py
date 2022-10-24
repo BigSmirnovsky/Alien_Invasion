@@ -163,6 +163,7 @@ class AlienInvasion:
 
     def _paused_start_game(self):
         """Функция которая должна запускать игру после паузы с охранением статы игры"""
+        pass
         
     def _first_game_mode_complexity(self, count):
         """Создание настроек скорости корабля, снаряда, и врожеских кораблей"""
