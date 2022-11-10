@@ -188,21 +188,26 @@ class AlienInvasion:
         if event.key == pygame.K_RIGHT:
         # Переместить корабль вправо.
             self.ship.moving_right = True
-            # Переместить корабль влево.
         elif event.key == pygame.K_LEFT:
+        # Переместить корабль влево.
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
+        # Выход.
             sys.exit()
         elif event.key == pygame.K_F12:
+        # Кнопка помощи.
             self._help_function()
         elif event.key == pygame.K_p:
+        # Пауза.
             self._paused()
         elif event.key == pygame.K_1:
+        # Повысить уровень сложэности
             self._first_game_mode_complexity(1)        
         elif event.key == pygame.K_KP_ENTER:
-            # Перезапускает игру
+        # Перезапускает игру
             self._start_game()
         elif event.key == pygame.K_SPACE:
+        # Выстрел
             self._fire_bullet()
 
     def _check_keyup_events(self, event):
