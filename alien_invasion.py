@@ -178,6 +178,7 @@ class AlienInvasion:
 
     def _help_function(self):
         """Функция вывода помощи"""
+        # Доработать!!!!!! Надо не как строку читать, а как джсон
         with open('help.json', 'r', encoding='utf-8') as f: 
             text_help = f.read()        
         self.stats.game_active = False

@@ -24,3 +24,8 @@ class GameStats():
         with open('record.json') as f:
             self.stats = json.load(f)
         return self.stats["stat"]
+    
+    def save_record_stat(self, record_stat):
+        """Сохранение файла рекарда"""
+        with open('record.json', 'w') as f:
+            f.write(json.dumps(record_stat))
