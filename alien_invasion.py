@@ -175,6 +175,7 @@ class AlienInvasion:
         """Функция паузы""" 
         self.stats.game_active = False
         self.play_button = Button(self, 'Paused')
+        pygame.mouse.set_visible(True)
 
     def _help_function(self):
         """Функция вывода помощи"""
