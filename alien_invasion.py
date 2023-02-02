@@ -115,9 +115,10 @@ class AlienInvasion:
 
             # Пауза
             sleep(0.5)
-        else:
+        elif self.stats.ship_left == 0:
             self.stats.game_active = False
-            pygame.mouse.set_visible(True)
+            self.play_button = Button(self, 'Game Over')
+            pygame.mouse.set_visible(True) 
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
