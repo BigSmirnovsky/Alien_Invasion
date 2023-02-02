@@ -24,13 +24,7 @@ class GameStats():
         self.ship_left = self.settings.ship_limit
         self.score = self.stats["score"]
         self.level = self.stats["level"]
-        
-    # def load_record_stat(self):
-    #     """Загрузка статы"""    
-    #     with open('record.json') as f:
-    #         self.stats = json.load(f)
-    #     return self.stats["stat"]
-    
+           
     # def save_record_stat(self, record_stat):
     #     """Сохранение файла рекарда"""
     #     with open('record.json', 'w') as f:

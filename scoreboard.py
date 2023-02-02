@@ -42,7 +42,7 @@ class Scoreboard():
         self.ship.draw(self.screen)
 
     def prep_hight_score(self):
-        """Преобразует рекорднаый счёт в графическое изображение"""
+        """Преобразует рекордный счёт в графическое изображение"""
         hight_score = round(self.stats.hight_score, -1)
         hight_score_str = "{:,}".format(hight_score)
         self.hight_score_image = self.font.render(hight_score_str, True,

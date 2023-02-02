@@ -193,7 +193,12 @@ class AlienInvasion:
         # Переместить корабль влево.
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
-        # Выход.
+        # Выход.        
+            with open('record.json') as f:
+                self.stat = json.load(f)
+            self.stat["record_score"] = self.stats.hight_score
+            with open('record.json', 'w') as f:
+                f.write(json.dumps(self.stat))
             sys.exit()
         elif event.key == pygame.K_F12:
         # Кнопка помощи.
