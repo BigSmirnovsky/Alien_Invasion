@@ -14,7 +14,7 @@ class GameStats():
             self.stats = json.load(f)
                  
         # Рекорд не должен сбрасываться.
-        self.hight_score = self.stats["stat"]
+        self.hight_score = self.stats["record_score"]
         
     def reset_stats(self):
         """Инициализирует статистику, изменяющуюся в ходу игры."""
