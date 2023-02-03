@@ -162,10 +162,14 @@ class AlienInvasion:
 
         # Указатель мыши скрывается.
         pygame.mouse.set_visible(False)
-
-    def _paused_start_game(self):
-        """Функция которая должна запускать игру после паузы с охранением статы игры"""
-        pass
+    
+    def _start_after_pause(self):
+        """Перезапускает параметры игры, создаёт новый флот""" 
+        
+        self.stats.game_active = True
+        
+        # Указатель мыши скрывается.
+        pygame.mouse.set_visible(False)
         
     def _first_game_mode_complexity(self, count):
         """Создание настроек скорости корабля, снаряда, и врожеских кораблей"""
@@ -175,18 +179,12 @@ class AlienInvasion:
     def _paused(self):
         """Функция паузы""" 
         self.stats.game_active = False
-        self.play_button = Button(self, 'Paused')
+        self.pause_button = Button(self, 'Paused')
         pygame.mouse.set_visible(True)
 
     def _help_function(self):
-        """Функция вывода помощи"""
-        #Доработать!!!!!! Надо не как строку читать, а как джсон
-        with open('help.json', 'r', encoding='utf-8') as f: 
-            text_help = f.read()        
-        self.stats.game_active = False
-        self.play_button = Help_info(self, text_help)
-        pygame.mouse.set_visible(True)                    
-
+        pass               
+    
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
         if event.key == pygame.K_RIGHT:

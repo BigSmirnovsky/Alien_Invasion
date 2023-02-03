@@ -1,6 +1,7 @@
 import pygame.font
 
 class Help_info():
+    
     def __init__(self, ai_game, msg):
         """Инициализирует атрибуты кнопки."""
         self.screen = ai_game.screen
