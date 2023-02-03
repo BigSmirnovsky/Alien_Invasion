@@ -11,7 +11,7 @@ from time import sleep
 from game_stats import GameStats
 from scoreboard import Scoreboard
 from button import Button
-from helps import Help_info
+from helps import HelpInfo
 
 
 class AlienInvasion:
@@ -40,6 +40,7 @@ class AlienInvasion:
 
         # Создание кнопки Play
         self.play_button = Button(self, "Play")
+        self.help_paused = HelpInfo(self, "Paused")
 
     def run_game(self):
         """Запуск основного цикла игры."""
@@ -193,7 +194,11 @@ class AlienInvasion:
         pygame.mouse.set_visible(True)
 
     def _help_function(self):
-        pass
+        """Функция паузы"""
+        self.help_paused = HelpInfo(self, "Paused")
+        self.stats.game_active = False
+        self.stats.paused_game = True
+        pygame.mouse.set_visible(True)
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -218,6 +223,7 @@ class AlienInvasion:
             # Пауза.
             self._paused()
         elif  not self.stats.game_active and self.stats.paused_game and event.key == pygame.K_p:
+            # Выход из паузы Р
             self._start_after_pause()
         elif event.key == pygame.K_1:
             # Повысить уровень сложности
