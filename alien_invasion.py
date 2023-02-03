@@ -176,6 +176,7 @@ class AlienInvasion:
     def _start_after_pause(self):
         """Функция продолжающая игру после паузы"""
         self.stats.game_active = True
+        self.stats.paused_game = False
         # Указатель мыши скрывается.
         pygame.mouse.set_visible(False)
 
@@ -213,9 +214,11 @@ class AlienInvasion:
         elif event.key == pygame.K_F12:
             # Кнопка помощи.
             self._help_function()
-        elif event.key == pygame.K_p:
+        elif event.key == pygame.K_p and not self.stats.paused_game and self.stats.game_active:
             # Пауза.
             self._paused()
+        elif  not self.stats.game_active and self.stats.paused_game and event.key == pygame.K_p:
+            self._start_after_pause()
         elif event.key == pygame.K_1:
             # Повысить уровень сложности
             self._first_game_mode_complexity(1)
