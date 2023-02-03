@@ -180,11 +180,12 @@ class AlienInvasion:
 
     def _help_function(self):
         """Функция вывода помощи"""
-        # Доработать!!!!!! Надо не как строку читать, а как джсон
+        #Доработать!!!!!! Надо не как строку читать, а как джсон
         with open('help.json', 'r', encoding='utf-8') as f: 
             text_help = f.read()        
         self.stats.game_active = False
-        self.play_button = Help_info(self, text_help)                
+        self.play_button = Help_info(self, text_help)
+        pygame.mouse.set_visible(True)                    
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
@@ -211,7 +212,7 @@ class AlienInvasion:
         elif event.key == pygame.K_1:
         # Повысить уровень сложэности
             self._first_game_mode_complexity(1)        
-        elif event.key == pygame.K_KP_ENTER:
+        elif event.key == pygame.K_r:
         # Перезапускает игру
             self._start_game()
         elif event.key == pygame.K_SPACE:
