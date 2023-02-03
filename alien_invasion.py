@@ -26,8 +26,7 @@ class AlienInvasion:
         self.settings.screen_width = self.screen.get_rect().width
         self.settings.screen_height = self.screen.get_rect().height
 
-        # Создание экземпляра для хранения игровой статистики.
-        # и панели результатов
+        # Создание экземпляра для хранения игровой статистики и панели результатов
         self.stats = GameStats(self)
         self.sb = Scoreboard(self)
 
@@ -53,8 +52,10 @@ class AlienInvasion:
 
     def _update_bullets(self):
         """Обновляет позиции снарядов и уничтожает старые снаряды."""
+        
         # Обновление позиций снарядолв.
         self.bullets.update()
+        
         # Удаление снарядов, вышедших за край экрана.
         for bullet in self.bullets.copy():
             if bullet.rect.bottom <= 0:
@@ -64,6 +65,7 @@ class AlienInvasion:
 
     def _check_bullet_alien_collisions(self):
         """Обработка коллизий снарядов с пришельцами"""
+        
         # Удаление снарядов и пришельцев, участвующих в коллизиях.
         collisions = pygame.sprite.groupcollide(self.bullets, self.aliens, True, True)
 
@@ -86,6 +88,7 @@ class AlienInvasion:
 
     def _update_aliens(self):
         """Проверяет достиг ли флот края экрана, с последующим обновлением всех позиций"""
+        
         self._check_fleet_edges()
         self.aliens.update()
 
@@ -98,6 +101,7 @@ class AlienInvasion:
 
     def _ship_hit(self):
         """Обрабатывает столкновение корабля с пришельцем."""
+        
         if self.stats.ship_left > 0:
             # Уменьшение ship_left и обновление панели счёта.
             self.stats.ship_left -= 1
@@ -121,6 +125,7 @@ class AlienInvasion:
 
     def _check_events(self):
         """Обрабытывает нажатия клавиш и события мыши"""
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
@@ -137,6 +142,7 @@ class AlienInvasion:
 
     def _check_play_button(self, mouse_pos):
         """Запускает новую игру при нажатии кнопки Play мышью"""
+        
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active:
@@ -144,6 +150,7 @@ class AlienInvasion:
 
     def _check_paused_button(self, mouse_pos):
         """Запускат игру после паузы при нажатии кнопки Paused мышью"""
+        
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
 
         if button_clicked and not self.stats.game_active and self.stats.paused_game:
@@ -151,6 +158,7 @@ class AlienInvasion:
             
     def _start_game(self):
         """Перезапускает параметры игры, создаёт новый флот"""
+        
         # Сброс игровых настроек
         self.settings.initialize_dynamyc_settings()
 
@@ -175,34 +183,42 @@ class AlienInvasion:
 
     def _start_after_pause(self):
         """Функция продолжающая игру после паузы"""
+        
         self.stats.game_active = True
         self.stats.paused_game = False
+        
         # Указатель мыши скрывается.
         pygame.mouse.set_visible(False)
 
     def _first_game_mode_complexity(self, count):
         """Создание настроек скорости корабля, снаряда, и врожеских кораблей"""
+        
         for _ in range(count):
             self.settings.increase_speed()
 
     def _paused(self):
         """Функция паузы"""
+        
         self.play_button = Button(self, "Paused")
         self.stats.game_active = False
         self.stats.paused_game = True
         pygame.mouse.set_visible(True)
 
     def _help_function(self):
+        """Функция информации по управлению"""
         pass
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
+        
         if event.key == pygame.K_RIGHT:
             # Переместить корабль вправо.
             self.ship.moving_right = True
+            
         elif event.key == pygame.K_LEFT:
             # Переместить корабль влево.
             self.ship.moving_left = True
+            
         elif event.key == pygame.K_ESCAPE:
             # Выход.
             with open("record.json") as f:
@@ -211,27 +227,34 @@ class AlienInvasion:
             with open("record.json", "w") as f:
                 f.write(json.dumps(self.stat))
             sys.exit()
+            
         # elif event.key == pygame.K_F12:
         #     # Кнопка помощи.
         #     self._help_function()
+        
         elif event.key == pygame.K_p and not self.stats.paused_game and self.stats.game_active:
             # Пауза.
             self._paused()
+            
         elif  not self.stats.game_active and self.stats.paused_game and event.key == pygame.K_p:
             # Выход из паузы Р
             self._start_after_pause()
+            
         elif event.key == pygame.K_1:
             # Повысить уровень сложности
             self._first_game_mode_complexity(1)
+            
         elif event.key == pygame.K_RETURN:
             # Перезапускает игру
             self._start_game()
+            
         elif event.key == pygame.K_SPACE:
             # Выстрел
             self._fire_bullet()
 
     def _check_keyup_events(self, event):
         """Реагирует на отпускание клавиш."""
+        
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
@@ -239,6 +262,7 @@ class AlienInvasion:
 
     def _check_aliens_bottom(self):
         """Проверяет, добрались ли пришельцы до нижнего края экрана."""
+        
         screen_rect = self.screen.get_rect()
         for alien in self.aliens.sprites():
             if alien.rect.bottom >= screen_rect.bottom:
@@ -248,12 +272,14 @@ class AlienInvasion:
 
     def _fire_bullet(self):
         """Создание нового снаряда и включение его в группу bullets."""
+        
         if len(self.bullets) < self.settings.bullet_allowed:
             new_bullet = Bullet(self)
             self.bullets.add(new_bullet)
 
     def _create_fleet(self):
         """Создание пришельцев."""
+        
         # Создание пришельца и вычисление количества пришельцев в ряду
         # Интервал между соседними пришельцами равен ширине пришельца
         alien = Alien(self)
@@ -277,6 +303,7 @@ class AlienInvasion:
 
     def _create_alien(self, alien_number, row_number):
         """Создание пришельцы и размещение его в ряду"""
+        
         alien = Alien(self)
         alien_width, alien_height = alien.rect.size
         alien.x = alien_width + 2 * alien_width * alien_number
@@ -286,6 +313,7 @@ class AlienInvasion:
 
     def _check_fleet_edges(self):
         """Реагирует на достижение пришельцем края экрана."""
+        
         for alien in self.aliens.sprites():
             if alien.check_edges():
                 self._change_fleet_direction()
@@ -293,6 +321,7 @@ class AlienInvasion:
 
     def _change_fleet_direction(self):
         """Опускает весь флот и меняет направление флота."""
+        
         for alien in self.aliens.sprites():
             alien.rect.y += self.settings.fleet_drop_speed
         self.settings.fleet_direction *= -1
