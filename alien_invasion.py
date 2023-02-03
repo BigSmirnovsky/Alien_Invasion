@@ -157,6 +157,7 @@ class AlienInvasion:
         # сброс игровой статистики.
         self.stats.reset_stats()
         self.stats.game_active = True
+        self.stats.paused_game = False
         self.sb.prep_score()
         self.sb.prep_level()
         self.sb.prep_ships()
@@ -191,6 +192,9 @@ class AlienInvasion:
         self.stats.paused_game = True
         pygame.mouse.set_visible(True)
 
+    def _help_function(self):
+        pass
+
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
         if event.key == pygame.K_RIGHT:
@@ -207,6 +211,9 @@ class AlienInvasion:
             with open("record.json", "w") as f:
                 f.write(json.dumps(self.stat))
             sys.exit()
+        # elif event.key == pygame.K_F12:
+        #     # Кнопка помощи.
+        #     self._help_function()
         elif event.key == pygame.K_p and not self.stats.paused_game and self.stats.game_active:
             # Пауза.
             self._paused()
