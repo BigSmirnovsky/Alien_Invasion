@@ -9,7 +9,9 @@ class GameStats():
 
         # Игра Alien Invasion запускается в неактивном состоянии.
         self.game_active = False
-         
+        
+        self.paused_game = False
+                 
         with open('record.json') as f:
             self.stats = json.load(f)
                  
