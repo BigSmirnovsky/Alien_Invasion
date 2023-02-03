@@ -116,6 +116,7 @@ class AlienInvasion:
             sleep(0.5)
         elif self.stats.ship_left == 0:
             self.stats.game_active = False
+            self.stats.paused_game = False
             self.play_button = Button(self, "Game Over")
             pygame.mouse.set_visible(True)
 
