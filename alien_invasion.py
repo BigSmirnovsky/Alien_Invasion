@@ -39,16 +39,13 @@ class AlienInvasion:
         self._create_fleet()
 
         # Создание кнопки Play
-        self.play_button = Button(self, 'Play')
-        
-        # Создание кнопки Paused
-        self.pause_button = Button(self, 'Paused')
+        self.play_button = Button(self, 'Play') 
 
     def run_game(self):
         """Запуск основного цикла игры."""
         while True:
             self._check_events()
-            if self.stats.game_active:
+            if self.stats.game_active and not self.stats.paused_game:
                 self.ship.update()
                 self._update_bullets()
                 self._update_aliens()
@@ -179,7 +176,10 @@ class AlienInvasion:
 
     def _paused(self):
         """Функция паузы""" 
-        self.stats.game_active = False 
+        self.play_button = Button(self, 'Paused')
+        self.stats.game_active = False
+        self.stats.paused_game = True
+        self.play_button.draw_button() 
         pygame.mouse.set_visible(True)
 
     def _help_function(self):
@@ -206,10 +206,9 @@ class AlienInvasion:
             self._help_function()
         elif event.key == pygame.K_p:
         # Пауза.
-            self.stats.paused_game = True
             self._paused()
         elif event.key == pygame.K_1:
-        # Повысить уровень сложэности
+        # Повысить уровень сложности
             self._first_game_mode_complexity(1)        
         elif event.key == pygame.K_r:
         # Перезапускает игру
@@ -300,8 +299,8 @@ class AlienInvasion:
         if not self.stats.game_active and not self.stats.paused_game:
             self.play_button.draw_button()
         
-        if self.stats.paused_game == True and not self.stats.game_active:
-            self.pause_button.draw_button()
+        # if self.stats.paused_game == True and not self.stats.game_active:
+        #     self.pause_button.draw_button()
 
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
