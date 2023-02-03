@@ -328,6 +328,7 @@ class AlienInvasion:
 
     def _update_screen(self):
         """Обновляет изображения на экране и отображает новый экран"""
+        
         # При каждом проходе цикла перерисовывается экран
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
