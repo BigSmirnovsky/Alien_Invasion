@@ -219,7 +219,7 @@ class AlienInvasion:
         elif event.key == pygame.K_1:
             # Повысить уровень сложности
             self._first_game_mode_complexity(1)
-        elif event.key == pygame.K_r:
+        elif event.key == pygame.K_RETURN:
             # Перезапускает игру
             self._start_game()
         elif event.key == pygame.K_SPACE:
