@@ -14,8 +14,8 @@ class HelpInfo(Sprite):
         self.image = pygame.image.load('images/helps.bmp')
         self.rect = self.image.get_rect()
         
-        # Каждый новый корабль появляется у нижнего края экрана.
-        self.rect.midbottom = self.screen_rect.midbottom
+        # Подсказака появляется у нижнего края.
+        self.rect.topleft = (445, 550)
 
     def blitme(self):
         """Рисует корабль в текущей позиции"""
