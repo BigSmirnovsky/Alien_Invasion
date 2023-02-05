@@ -208,9 +208,6 @@ class AlienInvasion:
         self.stats.paused_game = True
         pygame.mouse.set_visible(True)
 
-    def _help_function(self):
-        """Функция информации по управлению"""
-        pass
 
     def _check_keydown_events(self, event):
         """Реагирует на нажатие клавиш."""
