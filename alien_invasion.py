@@ -336,6 +336,7 @@ class AlienInvasion:
         # При каждом проходе цикла перерисовывается экран
         self.screen.fill(self.settings.bg_color)
         self.ship.blitme()
+        
         for bullet in self.bullets.sprites():
             bullet.draw_bullet()
         self.aliens.draw(self.screen)
@@ -349,6 +350,8 @@ class AlienInvasion:
 
         if self.stats.paused_game and not self.stats.game_active:
             self.play_button.draw_button()
+            self.helps.blitme()
+            
 
         # Отображение последнего прорисованного экрана.
         pygame.display.flip()
