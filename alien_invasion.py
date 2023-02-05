@@ -11,6 +11,7 @@ from time import sleep
 from game_stats import GameStats
 from scoreboard import Scoreboard
 from button import Button
+from helps import HelpInfo
 
 
 class AlienInvasion:
@@ -38,6 +39,9 @@ class AlienInvasion:
 
         # Создание кнопки Play
         self.play_button = Button(self, "Play")
+                
+        # Создание объекта помощи
+        self.helps = HelpInfo(self)
 
     def run_game(self):
         """Запуск основного цикла игры."""
